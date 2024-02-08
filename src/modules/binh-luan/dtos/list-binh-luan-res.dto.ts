@@ -1,6 +1,6 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { Expose } from "class-transformer";
-import { PageMetaDto } from "libs/share/src/core/dtos/page-meta.dto";
+import { ApiProperty } from '@nestjs/swagger';
+import { Expose } from 'class-transformer';
+import { PageMetaDto } from 'libs/share/src/core/dtos/page-meta.dto';
 
 class BinhLuanDto {
   @Expose()
@@ -24,7 +24,7 @@ export class ListBinhLuanResDto {
   @Expose()
   @ApiProperty({
     type: BinhLuanDto,
-    isArray: true
+    isArray: true,
   })
   data: BinhLuanDto[];
 

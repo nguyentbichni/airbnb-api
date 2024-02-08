@@ -1,5 +1,5 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { Expose } from "class-transformer";
+import { ApiProperty } from '@nestjs/swagger';
+import { Expose } from 'class-transformer';
 
 export class CreateNguoiDungResDto {
   @Expose()
@@ -20,7 +20,7 @@ export class CreateNguoiDungResDto {
 
   @Expose()
   @ApiProperty({ example: new Date() })
-  birthday: string
+  birthday: string;
 
   @Expose()
   @ApiProperty({ example: 'Male' })

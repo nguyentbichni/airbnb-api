@@ -1,24 +1,24 @@
-import { Injectable } from "@nestjs/common";
-import { CreateDatPhongReqDto } from "./dtos/create-dat-phong-req.dto";
-import { PrismaService } from "prisma/prisma.service";
-import { ListDatPhongReqDto } from "./dtos/list-dat-phong-req.dto";
-import { Prisma } from "@prisma/client";
-import { paginate } from "libs/share/src/core/utils/paginate.util";
-import { getCurrentUser } from "libs/share/src/core/utils/auth.util";
-import { isNaN } from "lodash";
-import { UpdateDatPhongReqDto } from "./dtos/update-dat-phong-req.dto";
+import { Injectable } from '@nestjs/common';
+import { CreateDatPhongReqDto } from './dtos/create-dat-phong-req.dto';
+import { PrismaService } from 'prisma/prisma.service';
+import { ListDatPhongReqDto } from './dtos/list-dat-phong-req.dto';
+import { Prisma } from '@prisma/client';
+import { paginate } from 'libs/share/src/core/utils/paginate.util';
+import { getCurrentUser } from 'libs/share/src/core/utils/auth.util';
+import { isNaN } from 'lodash';
+import { UpdateDatPhongReqDto } from './dtos/update-dat-phong-req.dto';
 
 @Injectable()
 export class DatPhongService {
-  constructor(
-    private prisma: PrismaService,
-  ) { }
+  constructor(private prisma: PrismaService) {}
 
   async create(createDatPhongReqDto: CreateDatPhongReqDto) {
-    await this.prisma.phong.findFirstOrThrow({ where: { id: createDatPhongReqDto.maPhong } });
+    await this.prisma.phong.findFirstOrThrow({
+      where: { id: createDatPhongReqDto.maPhong },
+    });
 
     return await this.prisma.datPhong.create({
-      data: createDatPhongReqDto
+      data: createDatPhongReqDto,
     });
   }
 
@@ -27,11 +27,11 @@ export class DatPhongService {
     if (!isNaN(Number(keyword))) {
       args.where['OR'].push(
         { maPhong: Number(keyword) },
-        { maNguoiDat: Number(keyword) }
+        { maNguoiDat: Number(keyword) },
       );
     }
 
-    if (keyword && !args.where.OR.length) args.where = { id: 0 }
+    if (keyword && !args.where.OR.length) args.where = { id: 0 };
 
     if (getCurrentUser().role !== 'admin') {
       args['where']['maNguoiDat'] = getCurrentUser().id;
@@ -42,7 +42,8 @@ export class DatPhongService {
 
   async detail(id: number) {
     const args: Prisma.DatPhongFindFirstOrThrowArgs = { where: { id } };
-    if (getCurrentUser().role !== 'admin') args.where.maNguoiDat = getCurrentUser().id;
+    if (getCurrentUser().role !== 'admin')
+      args.where.maNguoiDat = getCurrentUser().id;
 
     return await this.prisma.datPhong.findFirstOrThrow(args);
   }
@@ -50,7 +51,10 @@ export class DatPhongService {
   async update(id: number, updateDatPhongReqDto: UpdateDatPhongReqDto) {
     await this.detail(id);
 
-    return await this.prisma.viTri.update({ where: { id }, data: updateDatPhongReqDto });
+    return await this.prisma.viTri.update({
+      where: { id },
+      data: updateDatPhongReqDto,
+    });
   }
 
   async delete(id: number) {

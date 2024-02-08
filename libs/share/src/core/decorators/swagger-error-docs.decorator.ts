@@ -1,20 +1,27 @@
-import { Prisma } from "@prisma/client";
-import { Errors } from "../constants/error.constant";
-import { ApiBadRequestResponse, ApiForbiddenResponse, ApiInternalServerErrorResponse, ApiNotFoundResponse, ApiProperty, ApiServiceUnavailableResponse, ApiUnauthorizedResponse } from "@nestjs/swagger";
-import { applyDecorators } from "@nestjs/common";
+import { Prisma } from '@prisma/client';
+import { Errors } from '../constants/error.constant';
+import {
+  ApiBadRequestResponse,
+  ApiForbiddenResponse,
+  ApiInternalServerErrorResponse,
+  ApiNotFoundResponse,
+  ApiProperty,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
+import { applyDecorators } from '@nestjs/common';
 
 type ExcludeError =
   | 'notFound'
   | 'badRequest'
   | 'unauthorized'
   | 'forbidden'
-  | 'internalServer'
+  | 'internalServer';
 
 type Options = {
   exclude?: ExcludeError[];
   notFoundTarget?: Prisma.ModelName[];
   badRequestTarget?: object[];
-  badRequestFromService?: { code: string, message: string }[];
+  badRequestFromService?: { code: string; message: string }[];
 };
 
 function checkSpecialValidator(code: string): string {
@@ -25,7 +32,7 @@ function checkSpecialValidator(code: string): string {
 }
 
 export function ApiPropertyError(...codes: string[]) {
-  return function(target: any, propertyKey?: string): void {
+  return function (target: any, propertyKey?: string): void {
     target = target instanceof Function ? target : target.constructor;
     const examples = codes.reduce((values, codeName) => {
       codeName = codeName.charAt(0).toLowerCase() + codeName.slice(1);
@@ -101,7 +108,7 @@ export function ApiErrorDocs(options: Options) {
           },
         },
         ...notFoundExamples,
-      })
+      });
     });
   }
 

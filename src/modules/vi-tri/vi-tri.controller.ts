@@ -1,30 +1,48 @@
-import { Body, Controller, Delete, Get, Post, Put, Query, UploadedFile, UseGuards, UseInterceptors } from "@nestjs/common";
-import { ApiBearerAuth, ApiConsumes, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
-import { plainToInstance } from "class-transformer";
-import { ApiErrorDocs } from "libs/share/src/core/decorators/swagger-error-docs.decorator";
-import { CreateViTriResDto } from "./dtos/create-vi-tri-res.dto";
-import { CreateViTriReqDto } from "./dtos/create-vi-tri-req.dto";
-import { ViTriService } from "./vi-tri.service";
-import { JwtAuthGuard } from "libs/share/src/core/guards/jwt-auth.guard";
-import { ListViTriResDto } from "./dtos/list-vi-tri-res.dto";
-import { ListViTriReqDto } from "./dtos/list-vi-tri-req.dto";
-import { DetailViTriResDto } from "./dtos/detail-vi-tri-res.dto";
-import { DetailViTriReqDto } from "./dtos/detail-vi-tri-req.dto";
-import { UpdateViTriResDto } from "./dtos/update-vi-tri-res.dto";
-import { UpdateViTriReqDto } from "./dtos/update-vi-tri-req.dto";
-import { DeleteViTriResDto } from "./dtos/delete-vi-tri-res.dto";
-import { DeleteViTriReqDto } from "./dtos/delete-vi-tri-req.dto";
-import { RoleGuard } from "libs/share/src/core/guards/role.guard";
-import { FileInterceptor } from "@nestjs/platform-express";
-import { Errors } from "libs/share/src/core/constants/error.constant";
-import { ImgValidationPipe } from "libs/share/src/core/pipes/file-validation.pipe";
-import { UploadViTriHinhAnhResDto } from "./dtos/upload-vi-tri-hinh-anh-res.dto";
-import { UploadViTriHinhAnhReqDto } from "./dtos/upload-vi-tri-hinh-anh-req.dto";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Post,
+  Put,
+  Query,
+  UploadedFile,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
+import {
+  ApiBearerAuth,
+  ApiConsumes,
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
+import { plainToInstance } from 'class-transformer';
+import { ApiErrorDocs } from 'libs/share/src/core/decorators/swagger-error-docs.decorator';
+import { CreateViTriResDto } from './dtos/create-vi-tri-res.dto';
+import { CreateViTriReqDto } from './dtos/create-vi-tri-req.dto';
+import { ViTriService } from './vi-tri.service';
+import { JwtAuthGuard } from 'libs/share/src/core/guards/jwt-auth.guard';
+import { ListViTriResDto } from './dtos/list-vi-tri-res.dto';
+import { ListViTriReqDto } from './dtos/list-vi-tri-req.dto';
+import { DetailViTriResDto } from './dtos/detail-vi-tri-res.dto';
+import { DetailViTriReqDto } from './dtos/detail-vi-tri-req.dto';
+import { UpdateViTriResDto } from './dtos/update-vi-tri-res.dto';
+import { UpdateViTriReqDto } from './dtos/update-vi-tri-req.dto';
+import { DeleteViTriResDto } from './dtos/delete-vi-tri-res.dto';
+import { DeleteViTriReqDto } from './dtos/delete-vi-tri-req.dto';
+import { RoleGuard } from 'libs/share/src/core/guards/role.guard';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { Errors } from 'libs/share/src/core/constants/error.constant';
+import { ImgValidationPipe } from 'libs/share/src/core/pipes/file-validation.pipe';
+import { UploadViTriHinhAnhResDto } from './dtos/upload-vi-tri-hinh-anh-res.dto';
+import { UploadViTriHinhAnhReqDto } from './dtos/upload-vi-tri-hinh-anh-req.dto';
 
 @ApiTags('ViTri')
 @Controller('vi-tri')
 export class ViTriController {
-  constructor(private readonly viTriService: ViTriService) { }
+  constructor(private readonly viTriService: ViTriService) {}
 
   @Post()
   @UseGuards(JwtAuthGuard, new RoleGuard(['admin']))
@@ -39,7 +57,10 @@ export class ViTriController {
   @ApiErrorDocs({
     exclude: ['notFound'],
     badRequestTarget: [CreateViTriReqDto],
-    badRequestFromService: [Errors.Common.imgMaxSize(5), Errors.Common.imgNotType]
+    badRequestFromService: [
+      Errors.Common.imgMaxSize(5),
+      Errors.Common.imgNotType,
+    ],
   })
   async create(
     @Body() createViTriReqDto: CreateViTriReqDto,
@@ -59,11 +80,9 @@ export class ViTriController {
   @ApiOkResponse({ type: ListViTriResDto })
   @ApiErrorDocs({
     exclude: ['notFound', 'forbidden', 'unauthorized'],
-    badRequestTarget: [ListViTriReqDto]
+    badRequestTarget: [ListViTriReqDto],
   })
-  async list(
-    @Query() params: ListViTriReqDto,
-  ): Promise<ListViTriResDto> {
+  async list(@Query() params: ListViTriReqDto): Promise<ListViTriResDto> {
     const result = await this.viTriService.list(params);
 
     return plainToInstance(ListViTriResDto, result);
@@ -78,7 +97,7 @@ export class ViTriController {
   @ApiErrorDocs({
     exclude: ['forbidden', 'unauthorized'],
     notFoundTarget: ['ViTri'],
-    badRequestTarget: [DetailViTriReqDto]
+    badRequestTarget: [DetailViTriReqDto],
   })
   async detail(@Query() params: DetailViTriReqDto): Promise<DetailViTriResDto> {
     const result = await this.viTriService.detail(params.id);
@@ -99,7 +118,10 @@ export class ViTriController {
   @ApiErrorDocs({
     notFoundTarget: ['ViTri'],
     badRequestTarget: [DetailViTriReqDto, UpdateViTriReqDto],
-    badRequestFromService: [Errors.Common.imgMaxSize(5), Errors.Common.imgNotType]
+    badRequestFromService: [
+      Errors.Common.imgMaxSize(5),
+      Errors.Common.imgNotType,
+    ],
   })
   async update(
     @Query() params: DetailViTriReqDto,
@@ -125,15 +147,21 @@ export class ViTriController {
   @ApiErrorDocs({
     notFoundTarget: ['ViTri'],
     badRequestTarget: [DetailViTriReqDto, UploadViTriHinhAnhReqDto],
-    badRequestFromService: [Errors.Common.imgMaxSize(5), Errors.Common.imgNotType]
+    badRequestFromService: [
+      Errors.Common.imgMaxSize(5),
+      Errors.Common.imgNotType,
+    ],
   })
   async uploadHinhAnh(
     @Query() params: DetailViTriReqDto,
     @Body() uploadViTriHinhAnhResDto: UploadViTriHinhAnhReqDto,
-    @UploadedFile(ImgValidationPipe) hinhAnh: string
+    @UploadedFile(ImgValidationPipe) hinhAnh: string,
   ): Promise<UploadViTriHinhAnhResDto> {
     uploadViTriHinhAnhResDto.hinhAnh = hinhAnh;
-    const result = await this.viTriService.updateImg(params.id, uploadViTriHinhAnhResDto);
+    const result = await this.viTriService.updateImg(
+      params.id,
+      uploadViTriHinhAnhResDto,
+    );
 
     return plainToInstance(UploadViTriHinhAnhResDto, result);
   }
@@ -148,7 +176,7 @@ export class ViTriController {
   @ApiOkResponse({ type: DeleteViTriResDto })
   @ApiErrorDocs({
     notFoundTarget: ['ViTri'],
-    badRequestTarget: [DeleteViTriReqDto]
+    badRequestTarget: [DeleteViTriReqDto],
   })
   async delete(@Query() params: DeleteViTriReqDto): Promise<DeleteViTriResDto> {
     return await this.viTriService.delete(params.id);

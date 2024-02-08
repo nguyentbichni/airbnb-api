@@ -1,6 +1,6 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty } from "class-validator";
-import { ApiPropertyError } from "libs/share/src/core/decorators/swagger-error-docs.decorator";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty } from 'class-validator';
+import { ApiPropertyError } from 'libs/share/src/core/decorators/swagger-error-docs.decorator';
 
 export class UpdateViTriReqDto {
   @ApiProperty({ example: 'Tôn Đản' })

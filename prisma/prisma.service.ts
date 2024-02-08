@@ -1,6 +1,6 @@
-import { INestApplication, Injectable, OnModuleInit } from "@nestjs/common";
-import { Prisma, PrismaClient } from "@prisma/client";
-import { loggerConstant } from "libs/share/src/core/constants/logger.constant";
+import { INestApplication, Injectable, OnModuleInit } from '@nestjs/common';
+import { Prisma, PrismaClient } from '@prisma/client';
+import { loggerConstant } from 'libs/share/src/core/constants/logger.constant';
 
 @Injectable()
 export class PrismaService
@@ -8,7 +8,8 @@ export class PrismaService
     Prisma.PrismaClientOptions,
     'query' | 'error' | 'beforeExit'
   >
-  implements OnModuleInit {
+  implements OnModuleInit
+{
   constructor() {
     super({
       log: [
@@ -20,9 +21,7 @@ export class PrismaService
     });
 
     this.$use(async (params, next) => {
-      console.info(
-        `Model: ${params.model}. Action: #${params.action}`,
-      );
+      console.info(`Model: ${params.model}. Action: #${params.action}`);
 
       const result = await next(params);
 

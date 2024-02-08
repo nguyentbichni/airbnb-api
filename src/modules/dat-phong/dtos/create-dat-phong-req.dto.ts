@@ -1,8 +1,8 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { Transform } from "class-transformer";
-import { IsDate, IsNotEmpty, IsNumber, Max } from "class-validator";
-import { ApiPropertyError } from "libs/share/src/core/decorators/swagger-error-docs.decorator";
-import { getCurrentUser } from "libs/share/src/core/utils/auth.util";
+import { ApiProperty } from '@nestjs/swagger';
+import { Transform } from 'class-transformer';
+import { IsDate, IsNotEmpty, IsNumber, Max } from 'class-validator';
+import { ApiPropertyError } from 'libs/share/src/core/decorators/swagger-error-docs.decorator';
+import { getCurrentUser } from 'libs/share/src/core/utils/auth.util';
 
 export class CreateDatPhongReqDto {
   @ApiProperty({ example: 1 })
@@ -11,11 +11,16 @@ export class CreateDatPhongReqDto {
   @IsNotEmpty()
   maPhong: number;
 
-  @ApiProperty({ example: '//kiểu số, bắt buộc phải truyền nếu là admin, tự động ghi đè nếu là user, nên chỉ cần truyền null' })
+  @ApiProperty({
+    example:
+      '//kiểu số, bắt buộc phải truyền nếu là admin, tự động ghi đè nếu là user, nên chỉ cần truyền null',
+  })
   @ApiPropertyError('IsNotEmpty')
   @IsNumber()
   @IsNotEmpty()
-  @Transform(({ value }) => getCurrentUser().role === 'admin' ? value : getCurrentUser().id)
+  @Transform(({ value }) =>
+    getCurrentUser().role === 'admin' ? value : getCurrentUser().id,
+  )
   maNguoiDat: number;
 
   @ApiProperty({ example: 1 })

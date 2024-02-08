@@ -1,6 +1,10 @@
-import { NestFactory, Reflector } from '@nestjs/core';
+import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { BadRequestException, ValidationError, ValidationPipe } from '@nestjs/common';
+import {
+  BadRequestException,
+  ValidationError,
+  ValidationPipe,
+} from '@nestjs/common';
 import { InternalServerExceptionFilter } from 'libs/share/src/core/filters/internal-server-exception.filter';
 import { UnauthorizedExceptionFilter } from 'libs/share/src/core/filters/unauthoried-exception.filter';
 import { ForbiddenExceptionFilter } from 'libs/share/src/core/filters/forbidden-exception.filter';
@@ -8,8 +12,8 @@ import { BadRequestExceptionFilter } from 'libs/share/src/core/filters/bad-reque
 import { QueryFailedErrorFilter } from 'libs/share/src/core/filters/query-failed-exception.filter';
 import { PageNotFoundExceptionFilter } from 'libs/share/src/core/filters/page-not-found-exception.filter';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { writeFileSync } from 'fs';
-import { dump } from 'js-yaml';
+// import { writeFileSync } from 'fs';
+// import { dump } from 'js-yaml';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

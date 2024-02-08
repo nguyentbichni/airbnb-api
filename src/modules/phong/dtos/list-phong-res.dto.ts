@@ -1,6 +1,6 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { Expose } from "class-transformer";
-import { PageMetaDto } from "libs/share/src/core/dtos/page-meta.dto";
+import { ApiProperty } from '@nestjs/swagger';
+import { Expose } from 'class-transformer';
+import { PageMetaDto } from 'libs/share/src/core/dtos/page-meta.dto';
 
 export class PhongDto {
   @Expose()
@@ -72,7 +72,9 @@ export class PhongDto {
   banUi: boolean;
 
   @Expose()
-  @ApiProperty({ example: 'data:image/png;base64,60c663d2ccd0381873d8d09bfe8329b0' })
+  @ApiProperty({
+    example: 'data:image/png;base64,60c663d2ccd0381873d8d09bfe8329b0',
+  })
   hinhAnh: string;
 }
 
@@ -80,7 +82,7 @@ export class ListPhongResDto {
   @Expose()
   @ApiProperty({
     type: PhongDto,
-    isArray: true
+    isArray: true,
   })
   data: PhongDto[];
 

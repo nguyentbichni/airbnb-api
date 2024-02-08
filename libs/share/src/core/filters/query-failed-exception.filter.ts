@@ -7,7 +7,6 @@ import {
 import { Prisma } from '@prisma/client';
 import { Errors } from '../constants/error.constant';
 
-
 @Catch(Prisma.PrismaClientKnownRequestError)
 export class QueryFailedErrorFilter implements ExceptionFilter {
   async catch(
@@ -17,7 +16,7 @@ export class QueryFailedErrorFilter implements ExceptionFilter {
     const ctx = host.switchToHttp();
     const res = ctx.getResponse();
     const message = error.message.trim().split('\n').pop();
-    let errors: [] | {};
+    let errors = [] || {};
     let status: number;
 
     if (error.code === 'P2025') {

@@ -3,7 +3,6 @@ import { Transform } from 'class-transformer';
 import { IsNumber, IsOptional, Max, Min } from 'class-validator';
 import { ApiPropertyError } from '../decorators/swagger-error-docs.decorator';
 
-
 export class PageReqDto {
   @ApiProperty({
     description: 'Page number',

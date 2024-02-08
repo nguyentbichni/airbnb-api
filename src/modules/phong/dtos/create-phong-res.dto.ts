@@ -1,5 +1,5 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { Expose } from "class-transformer";
+import { ApiProperty } from '@nestjs/swagger';
+import { Expose } from 'class-transformer';
 
 export class CreatePhongResDto {
   @Expose()
@@ -71,6 +71,8 @@ export class CreatePhongResDto {
   banUi: boolean;
 
   @Expose()
-  @ApiProperty({ example: 'data:image/png;base64,60c663d2ccd0381873d8d09bfe8329b0' })
+  @ApiProperty({
+    example: 'data:image/png;base64,60c663d2ccd0381873d8d09bfe8329b0',
+  })
   hinhAnh: string;
 }

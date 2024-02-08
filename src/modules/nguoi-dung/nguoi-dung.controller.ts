@@ -1,30 +1,48 @@
-import { Body, Controller, Delete, Get, Post, Put, Query, UploadedFile, UseGuards, UseInterceptors } from "@nestjs/common";
-import { ApiBearerAuth, ApiConsumes, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
-import { NguoiDungService } from "./nguoi-dung.service";
-import { JwtAuthGuard } from "libs/share/src/core/guards/jwt-auth.guard";
-import { RoleGuard } from "libs/share/src/core/guards/role.guard";
-import { ApiErrorDocs } from "libs/share/src/core/decorators/swagger-error-docs.decorator";
-import { CreateNguoiDungReqDto } from "./dtos/create-nguoi-dung-req.dto";
-import { CreateNguoiDungResDto } from "./dtos/create-nguoi-dung-res.dto";
-import { plainToInstance } from "class-transformer";
-import { Errors } from "libs/share/src/core/constants/error.constant";
-import { ListNguoiDungResDto } from "./dtos/list-nguoi-dung-res.dto";
-import { ListNguoiDungReqDto } from "./dtos/list-nguoi-dung-req.dto";
-import { DetailNguoiDungResDto } from "./dtos/detail-nguoi-dung-res.dto";
-import { DetailNguoiDungReqDto } from "./dtos/detail-nguoi-dung-req.dto";
-import { UpdateNguoiDungResDto } from "./dtos/update-nguoi-dung-res.dto";
-import { UpdateNguoiDungReqDto } from "./dtos/update-nguoi-dung-req.dto";
-import { DeleteNguoiDungResDto } from "./dtos/delete-nguoi-dung-res.dto";
-import { DeleteNguoiDungReqDto } from "./dtos/delete-nguoi-dung-req.dto";
-import { FileInterceptor } from "@nestjs/platform-express";
-import { ImgValidationPipe } from "libs/share/src/core/pipes/file-validation.pipe";
-import { UploadHinhAnhNguoiDungResDto } from "./dtos/upload-hinh-anh-nguoi-dung-res.dto";
-import { UploadHinhAnhNguoiDungReqDto } from "./dtos/upload-hinh-anh-nguoi-dung-req.dto";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Post,
+  Put,
+  Query,
+  UploadedFile,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
+import {
+  ApiBearerAuth,
+  ApiConsumes,
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
+import { NguoiDungService } from './nguoi-dung.service';
+import { JwtAuthGuard } from 'libs/share/src/core/guards/jwt-auth.guard';
+import { RoleGuard } from 'libs/share/src/core/guards/role.guard';
+import { ApiErrorDocs } from 'libs/share/src/core/decorators/swagger-error-docs.decorator';
+import { CreateNguoiDungReqDto } from './dtos/create-nguoi-dung-req.dto';
+import { CreateNguoiDungResDto } from './dtos/create-nguoi-dung-res.dto';
+import { plainToInstance } from 'class-transformer';
+import { Errors } from 'libs/share/src/core/constants/error.constant';
+import { ListNguoiDungResDto } from './dtos/list-nguoi-dung-res.dto';
+import { ListNguoiDungReqDto } from './dtos/list-nguoi-dung-req.dto';
+import { DetailNguoiDungResDto } from './dtos/detail-nguoi-dung-res.dto';
+import { DetailNguoiDungReqDto } from './dtos/detail-nguoi-dung-req.dto';
+import { UpdateNguoiDungResDto } from './dtos/update-nguoi-dung-res.dto';
+import { UpdateNguoiDungReqDto } from './dtos/update-nguoi-dung-req.dto';
+import { DeleteNguoiDungResDto } from './dtos/delete-nguoi-dung-res.dto';
+import { DeleteNguoiDungReqDto } from './dtos/delete-nguoi-dung-req.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { ImgValidationPipe } from 'libs/share/src/core/pipes/file-validation.pipe';
+import { UploadHinhAnhNguoiDungResDto } from './dtos/upload-hinh-anh-nguoi-dung-res.dto';
+import { UploadHinhAnhNguoiDungReqDto } from './dtos/upload-hinh-anh-nguoi-dung-req.dto';
 
 @ApiTags('NguoiDung')
 @Controller('nguoi-dung')
 export class NguoiDungController {
-  constructor(private readonly nguoiDungService: NguoiDungService) { }
+  constructor(private readonly nguoiDungService: NguoiDungService) {}
 
   @Post()
   @UseGuards(JwtAuthGuard, new RoleGuard(['admin']))
@@ -53,7 +71,7 @@ export class NguoiDungController {
   @ApiOkResponse({ type: ListNguoiDungResDto })
   @ApiErrorDocs({
     exclude: ['notFound', 'forbidden', 'unauthorized'],
-    badRequestTarget: [ListNguoiDungReqDto]
+    badRequestTarget: [ListNguoiDungReqDto],
   })
   async list(
     @Query() params: ListNguoiDungReqDto,
@@ -72,9 +90,11 @@ export class NguoiDungController {
   @ApiErrorDocs({
     exclude: ['forbidden', 'unauthorized'],
     notFoundTarget: ['NguoiDung'],
-    badRequestTarget: [DetailNguoiDungReqDto]
+    badRequestTarget: [DetailNguoiDungReqDto],
   })
-  async detail(@Query() params: DetailNguoiDungReqDto): Promise<DetailNguoiDungResDto> {
+  async detail(
+    @Query() params: DetailNguoiDungReqDto,
+  ): Promise<DetailNguoiDungResDto> {
     const result = await this.nguoiDungService.detail(params.id);
 
     return plainToInstance(DetailNguoiDungResDto, result);
@@ -96,7 +116,10 @@ export class NguoiDungController {
     @Query() params: DetailNguoiDungReqDto,
     @Body() updateNguoiDungReqDto: UpdateNguoiDungReqDto,
   ): Promise<UpdateNguoiDungResDto> {
-    const result = await this.nguoiDungService.update(params.id, updateNguoiDungReqDto);
+    const result = await this.nguoiDungService.update(
+      params.id,
+      updateNguoiDungReqDto,
+    );
 
     return plainToInstance(UpdateNguoiDungResDto, result);
   }
@@ -114,15 +137,21 @@ export class NguoiDungController {
   @ApiErrorDocs({
     notFoundTarget: ['NguoiDung'],
     badRequestTarget: [DetailNguoiDungReqDto, UploadHinhAnhNguoiDungReqDto],
-    badRequestFromService: [Errors.Common.imgMaxSize(5), Errors.Common.imgNotType]
+    badRequestFromService: [
+      Errors.Common.imgMaxSize(5),
+      Errors.Common.imgNotType,
+    ],
   })
   async uploadHinhAnh(
     @Query() params: DetailNguoiDungReqDto,
     @Body() uploadViTriHinhAnhResDto: UploadHinhAnhNguoiDungReqDto,
-    @UploadedFile(ImgValidationPipe) hinhAnh: string
+    @UploadedFile(ImgValidationPipe) hinhAnh: string,
   ): Promise<UploadHinhAnhNguoiDungResDto> {
     uploadViTriHinhAnhResDto.hinhAnh = hinhAnh;
-    const result = await this.nguoiDungService.updateImg(params.id, uploadViTriHinhAnhResDto);
+    const result = await this.nguoiDungService.updateImg(
+      params.id,
+      uploadViTriHinhAnhResDto,
+    );
 
     return plainToInstance(UploadHinhAnhNguoiDungResDto, result);
   }
@@ -137,9 +166,11 @@ export class NguoiDungController {
   @ApiOkResponse({ type: DeleteNguoiDungResDto })
   @ApiErrorDocs({
     notFoundTarget: ['NguoiDung'],
-    badRequestTarget: [DeleteNguoiDungReqDto]
+    badRequestTarget: [DeleteNguoiDungReqDto],
   })
-  async delete(@Query() params: DeleteNguoiDungReqDto): Promise<DeleteNguoiDungResDto> {
+  async delete(
+    @Query() params: DeleteNguoiDungReqDto,
+  ): Promise<DeleteNguoiDungResDto> {
     return await this.nguoiDungService.delete(params.id);
   }
 }

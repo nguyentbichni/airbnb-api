@@ -1,4 +1,9 @@
-export const paginate = async (model: any, args: any, page?: number | string, take?: number | string) => {
+export const paginate = async (
+  model: any,
+  args: any,
+  page?: number | string,
+  take?: number | string,
+) => {
   page = Number(page) || 1;
   take = Number(take) || 10;
 
@@ -20,4 +25,4 @@ export const paginate = async (model: any, args: any, page?: number | string, ta
       take,
     },
   };
-}
+};

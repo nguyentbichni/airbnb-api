@@ -23,13 +23,11 @@ const validationError = (error: ValidationError) => {
 
   const field: string = errorObject.property;
   const errName: string = first(Object.keys(errorObject.constraints));
-  let code: string = Errors.Common[errName]?.code;
+  const code: string = Errors.Common[errName]?.code;
   const errMsg: string = first(Object.values(errorObject.constraints));
   const regexValueNumber = errMsg.match(/\d+/);
-  const regexValueIn = errMsg.slice(errMsg.indexOf(":") + 1);
-  let message: string = code
-    ? Errors.Common[errName].message
-    : undefined;
+  const regexValueIn = errMsg.slice(errMsg.indexOf(':') + 1);
+  let message: string = code ? Errors.Common[errName].message : undefined;
 
   message = replace(
     message,
@@ -37,11 +35,7 @@ const validationError = (error: ValidationError) => {
     regexValueNumber && regexValueNumber[0],
   );
 
-  message = replace(
-    message,
-    /{valueIn}/,
-    regexValueIn,
-  );
+  message = replace(message, /{valueIn}/, regexValueIn);
 
   return {
     resource: error.target?.constructor.name,
@@ -49,7 +43,7 @@ const validationError = (error: ValidationError) => {
     code,
     message,
   };
-}
+};
 
 @Catch(BadRequestException)
 export class BadRequestExceptionFilter
@@ -61,8 +55,8 @@ export class BadRequestExceptionFilter
     const res = host.switchToHttp().getResponse();
     const errors = isArray(messages)
       ? messages.map((e: any) =>
-        e instanceof ValidationError ? validationError(e) : e,
-      )
+          e instanceof ValidationError ? validationError(e) : e,
+        )
       : exceptionRes;
 
     res.status(exception.getStatus()).json({ errors });

@@ -1,5 +1,5 @@
-import { CanActivate } from "@nestjs/common";
-import { getCurrentUser } from "../utils/auth.util";
+import { CanActivate } from '@nestjs/common';
+import { getCurrentUser } from '../utils/auth.util';
 
 export class RoleGuard implements CanActivate {
   roleAccess: string[];

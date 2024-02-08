@@ -1,6 +1,6 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { Expose } from "class-transformer";
-import { PageMetaDto } from "libs/share/src/core/dtos/page-meta.dto";
+import { ApiProperty } from '@nestjs/swagger';
+import { Expose } from 'class-transformer';
+import { PageMetaDto } from 'libs/share/src/core/dtos/page-meta.dto';
 
 class NguoiDungDto {
   @Expose()
@@ -21,7 +21,7 @@ class NguoiDungDto {
 
   @Expose()
   @ApiProperty({ example: new Date() })
-  birthday: string
+  birthday: string;
 
   @Expose()
   @ApiProperty({ example: 'Male' })
@@ -36,7 +36,7 @@ export class ListNguoiDungResDto {
   @Expose()
   @ApiProperty({
     type: NguoiDungDto,
-    isArray: true
+    isArray: true,
   })
   data: NguoiDungDto[];
 

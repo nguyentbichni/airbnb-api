@@ -20,7 +20,7 @@ import { DatPhongModule } from './modules/dat-phong/dat-phong.module';
     }),
     ClsModule.forRoot({
       global: true,
-      middleware: { mount: true }
+      middleware: { mount: true },
     }),
     AuthModule,
     ViTriModule,
@@ -30,4 +30,4 @@ import { DatPhongModule } from './modules/dat-phong/dat-phong.module';
     DatPhongModule,
   ],
 })
-export class AppModule { }
+export class AppModule {}

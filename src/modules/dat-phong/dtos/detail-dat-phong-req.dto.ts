@@ -1,7 +1,7 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { Transform } from "class-transformer";
-import { IsNotEmpty, IsNumber, Min } from "class-validator";
-import { ApiPropertyError } from "libs/share/src/core/decorators/swagger-error-docs.decorator";
+import { ApiProperty } from '@nestjs/swagger';
+import { Transform } from 'class-transformer';
+import { IsNotEmpty, IsNumber, Min } from 'class-validator';
+import { ApiPropertyError } from 'libs/share/src/core/decorators/swagger-error-docs.decorator';
 
 export class DetailDatPhongReqDto {
   @ApiProperty({

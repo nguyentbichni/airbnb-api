@@ -1,28 +1,46 @@
-import { Body, Controller, Delete, Get, Post, Put, Query, UploadedFile, UseGuards, UseInterceptors } from "@nestjs/common";
-import { ApiBearerAuth, ApiConsumes, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
-import { PhongService } from "./phong.service";
-import { RoleGuard } from "libs/share/src/core/guards/role.guard";
-import { JwtAuthGuard } from "libs/share/src/core/guards/jwt-auth.guard";
-import { ApiErrorDocs } from "libs/share/src/core/decorators/swagger-error-docs.decorator";
-import { FileInterceptor } from "@nestjs/platform-express";
-import { Errors } from "libs/share/src/core/constants/error.constant";
-import { ImgValidationPipe } from "libs/share/src/core/pipes/file-validation.pipe";
-import { CreatePhongResDto } from "./dtos/create-phong-res.dto";
-import { CreatePhongReqDto } from "./dtos/create-phong-req.dto";
-import { plainToInstance } from "class-transformer";
-import { ListPhongReqDto } from "./dtos/list-phong-req.dto";
-import { ListPhongResDto } from "./dtos/list-phong-res.dto";
-import { DetailPhongResDto } from "./dtos/detail-phong-res.dto";
-import { DetailPhongReqDto } from "./dtos/detail-phong-req.dto";
-import { DeletePhongReqDto } from "./dtos/delete-phong-req.dto";
-import { DeletePhongResDto } from "./dtos/delete-phong-res.dto";
-import { UploadHinhAnhPhongReqDto } from "./dtos/upload-hinh-anh-phong-req.dto";
-import { UploadHinhAnhPhongResDto } from "./dtos/upload-hinh-anh-phong-res.dto";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Post,
+  Put,
+  Query,
+  UploadedFile,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
+import {
+  ApiBearerAuth,
+  ApiConsumes,
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
+import { PhongService } from './phong.service';
+import { RoleGuard } from 'libs/share/src/core/guards/role.guard';
+import { JwtAuthGuard } from 'libs/share/src/core/guards/jwt-auth.guard';
+import { ApiErrorDocs } from 'libs/share/src/core/decorators/swagger-error-docs.decorator';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { Errors } from 'libs/share/src/core/constants/error.constant';
+import { ImgValidationPipe } from 'libs/share/src/core/pipes/file-validation.pipe';
+import { CreatePhongResDto } from './dtos/create-phong-res.dto';
+import { CreatePhongReqDto } from './dtos/create-phong-req.dto';
+import { plainToInstance } from 'class-transformer';
+import { ListPhongReqDto } from './dtos/list-phong-req.dto';
+import { ListPhongResDto } from './dtos/list-phong-res.dto';
+import { DetailPhongResDto } from './dtos/detail-phong-res.dto';
+import { DetailPhongReqDto } from './dtos/detail-phong-req.dto';
+import { DeletePhongReqDto } from './dtos/delete-phong-req.dto';
+import { DeletePhongResDto } from './dtos/delete-phong-res.dto';
+import { UploadHinhAnhPhongReqDto } from './dtos/upload-hinh-anh-phong-req.dto';
+import { UploadHinhAnhPhongResDto } from './dtos/upload-hinh-anh-phong-res.dto';
 
 @ApiTags('Phong')
 @Controller('phong')
 export class PhongController {
-  constructor(private readonly phongService: PhongService) { }
+  constructor(private readonly phongService: PhongService) {}
 
   @Post()
   @UseGuards(JwtAuthGuard, new RoleGuard(['admin']))
@@ -37,7 +55,10 @@ export class PhongController {
   @ApiErrorDocs({
     exclude: ['notFound'],
     badRequestTarget: [CreatePhongReqDto],
-    badRequestFromService: [Errors.Common.imgMaxSize(5), Errors.Common.imgNotType]
+    badRequestFromService: [
+      Errors.Common.imgMaxSize(5),
+      Errors.Common.imgNotType,
+    ],
   })
   async create(
     @Body() createPhongReqDto: CreatePhongReqDto,
@@ -57,11 +78,9 @@ export class PhongController {
   @ApiOkResponse({ type: ListPhongResDto })
   @ApiErrorDocs({
     exclude: ['notFound', 'forbidden', 'unauthorized'],
-    badRequestTarget: [ListPhongReqDto]
+    badRequestTarget: [ListPhongReqDto],
   })
-  async list(
-    @Query() params: ListPhongReqDto,
-  ): Promise<ListPhongResDto> {
+  async list(@Query() params: ListPhongReqDto): Promise<ListPhongResDto> {
     const listViTri = await this.phongService.list(params);
 
     return plainToInstance(ListPhongResDto, listViTri);
@@ -76,7 +95,7 @@ export class PhongController {
   @ApiErrorDocs({
     exclude: ['forbidden', 'unauthorized'],
     notFoundTarget: ['Phong'],
-    badRequestTarget: [DetailPhongReqDto]
+    badRequestTarget: [DetailPhongReqDto],
   })
   async detail(@Query() params: DetailPhongReqDto): Promise<DetailPhongResDto> {
     const phong = await this.phongService.detail(params.id);
@@ -97,15 +116,21 @@ export class PhongController {
   @ApiErrorDocs({
     notFoundTarget: ['Phong'],
     badRequestTarget: [DetailPhongReqDto, UploadHinhAnhPhongReqDto],
-    badRequestFromService: [Errors.Common.imgMaxSize(5), Errors.Common.imgNotType]
+    badRequestFromService: [
+      Errors.Common.imgMaxSize(5),
+      Errors.Common.imgNotType,
+    ],
   })
   async uploadHinhAnh(
     @Query() params: DetailPhongReqDto,
     @Body() uploadHinhAnhPhongReqDto: UploadHinhAnhPhongReqDto,
-    @UploadedFile(ImgValidationPipe) hinhAnh: string
+    @UploadedFile(ImgValidationPipe) hinhAnh: string,
   ): Promise<UploadHinhAnhPhongResDto> {
     uploadHinhAnhPhongReqDto.hinhAnh = hinhAnh;
-    const result = await this.phongService.updateImg(params.id, uploadHinhAnhPhongReqDto);
+    const result = await this.phongService.updateImg(
+      params.id,
+      uploadHinhAnhPhongReqDto,
+    );
 
     return plainToInstance(UploadHinhAnhPhongResDto, result);
   }
@@ -120,11 +145,9 @@ export class PhongController {
   @ApiOkResponse({ type: DeletePhongResDto })
   @ApiErrorDocs({
     notFoundTarget: ['ViTri'],
-    badRequestTarget: [DeletePhongReqDto]
+    badRequestTarget: [DeletePhongReqDto],
   })
   async delete(@Query() params: DeletePhongReqDto): Promise<DeletePhongResDto> {
     return await this.phongService.delete(params.id);
   }
-
-
 }

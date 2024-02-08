@@ -1,27 +1,40 @@
-import { Body, Controller, Delete, Get, Post, Put, Query, UseGuards } from "@nestjs/common";
-import { ApiBearerAuth, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
-import { DatPhongService } from "./dat-phong.service";
-import { JwtAuthGuard } from "libs/share/src/core/guards/jwt-auth.guard";
-import { ApiErrorDocs } from "libs/share/src/core/decorators/swagger-error-docs.decorator";
-import { plainToInstance } from "class-transformer";
-import { CreateDatPhongReqDto } from "./dtos/create-dat-phong-req.dto";
-import { CreateDatPhongResDto } from "./dtos/create-dat-phong-res.dto";
-import { ListDatPhongResDto } from "./dtos/list-dat-phong-res.dto";
-import { ListDatPhongReqDto } from "./dtos/list-dat-phong-req.dto";
-import { DetailDatPhongReqDto } from "./dtos/detail-dat-phong-req.dto";
-import { DetailDatPhongResDto } from "./dtos/detail-dat-phong-res.dto";
-import { UpdateDatPhongResDto } from "./dtos/update-dat-phong-res.dto";
-import { UpdateDatPhongReqDto } from "./dtos/update-dat-phong-req.dto";
-import { RoleGuard } from "libs/share/src/core/guards/role.guard";
-import { DeleteDatPhongResDto } from "./dtos/delete-dat-phong-res.dto";
-import { DeleteDatPhongReqDto } from "./dtos/delete-dat-phong-req.dto";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Post,
+  Put,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
+import {
+  ApiBearerAuth,
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
+import { DatPhongService } from './dat-phong.service';
+import { JwtAuthGuard } from 'libs/share/src/core/guards/jwt-auth.guard';
+import { ApiErrorDocs } from 'libs/share/src/core/decorators/swagger-error-docs.decorator';
+import { plainToInstance } from 'class-transformer';
+import { CreateDatPhongReqDto } from './dtos/create-dat-phong-req.dto';
+import { CreateDatPhongResDto } from './dtos/create-dat-phong-res.dto';
+import { ListDatPhongResDto } from './dtos/list-dat-phong-res.dto';
+import { ListDatPhongReqDto } from './dtos/list-dat-phong-req.dto';
+import { DetailDatPhongReqDto } from './dtos/detail-dat-phong-req.dto';
+import { DetailDatPhongResDto } from './dtos/detail-dat-phong-res.dto';
+import { UpdateDatPhongResDto } from './dtos/update-dat-phong-res.dto';
+import { UpdateDatPhongReqDto } from './dtos/update-dat-phong-req.dto';
+import { RoleGuard } from 'libs/share/src/core/guards/role.guard';
+import { DeleteDatPhongResDto } from './dtos/delete-dat-phong-res.dto';
+import { DeleteDatPhongReqDto } from './dtos/delete-dat-phong-req.dto';
 
 @ApiTags('DatPhong')
 @Controller('dat-phong')
 export class DatPhongController {
-  constructor(
-    private datPhongService: DatPhongService,
-  ) { }
+  constructor(private datPhongService: DatPhongService) {}
 
   @Post()
   @UseGuards(JwtAuthGuard)
@@ -53,11 +66,9 @@ export class DatPhongController {
   @ApiOkResponse({ type: ListDatPhongResDto })
   @ApiErrorDocs({
     exclude: ['notFound'],
-    badRequestTarget: [ListDatPhongReqDto]
+    badRequestTarget: [ListDatPhongReqDto],
   })
-  async list(
-    @Query() params: ListDatPhongReqDto,
-  ): Promise<ListDatPhongResDto> {
+  async list(@Query() params: ListDatPhongReqDto): Promise<ListDatPhongResDto> {
     const result = await this.datPhongService.list(params);
 
     return plainToInstance(ListDatPhongResDto, result);
@@ -74,9 +85,11 @@ export class DatPhongController {
   @ApiErrorDocs({
     exclude: ['forbidden', 'unauthorized'],
     notFoundTarget: ['DatPhong'],
-    badRequestTarget: [DetailDatPhongReqDto]
+    badRequestTarget: [DetailDatPhongReqDto],
   })
-  async detail(@Query() params: DetailDatPhongReqDto): Promise<DetailDatPhongResDto> {
+  async detail(
+    @Query() params: DetailDatPhongReqDto,
+  ): Promise<DetailDatPhongResDto> {
     const result = await this.datPhongService.detail(params.id);
 
     return plainToInstance(DetailDatPhongResDto, result);
@@ -98,7 +111,10 @@ export class DatPhongController {
     @Query() params: DetailDatPhongReqDto,
     @Body() updateDatPhongReqDto: UpdateDatPhongReqDto,
   ): Promise<UpdateDatPhongResDto> {
-    const result = await this.datPhongService.update(params.id, updateDatPhongReqDto);
+    const result = await this.datPhongService.update(
+      params.id,
+      updateDatPhongReqDto,
+    );
 
     return plainToInstance(UpdateDatPhongResDto, result);
   }
@@ -113,9 +129,11 @@ export class DatPhongController {
   @ApiOkResponse({ type: DeleteDatPhongResDto })
   @ApiErrorDocs({
     notFoundTarget: ['ViTri'],
-    badRequestTarget: [DeleteDatPhongReqDto]
+    badRequestTarget: [DeleteDatPhongReqDto],
   })
-  async delete(@Query() params: DeleteDatPhongReqDto): Promise<DeleteDatPhongResDto> {
+  async delete(
+    @Query() params: DeleteDatPhongReqDto,
+  ): Promise<DeleteDatPhongResDto> {
     return await this.datPhongService.delete(params.id);
   }
 }

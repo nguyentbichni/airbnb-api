@@ -1,22 +1,40 @@
-import { Body, Controller, Delete, Get, Post, Put, Query, UseGuards } from "@nestjs/common";
-import { ApiBearerAuth, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
-import { ApiErrorDocs } from "libs/share/src/core/decorators/swagger-error-docs.decorator";
-import { BinhLuanService } from "./binh-luan.service";
-import { plainToInstance } from "class-transformer";
-import { JwtAuthGuard } from "libs/share/src/core/guards/jwt-auth.guard";
-import { CreateBinhLuanReqDto } from "./dtos/create-binh-luan-req.dto";
-import { CreateBinhLuanResDto } from "./dtos/create-binh-luan-res.dto";
-import { ListBinhLuanResDto } from "./dtos/list-binh-luan-res.dto";
-import { ListBinhLuanReqDto } from "./dtos/list-binh-luan-req.dto";
-import { UpdateBinhLuanResDto } from "./dtos/update-binh-luan-res.dto";
-import { IdBinhLuanReqDto, UpdateBinhLuanReqDto } from "./dtos/update-binh-luan-req.dto";
-import { DeleteBinhLuanResDto } from "./dtos/delete-nguoi-dung-res.dto";
-import { DeleteBinhLuanReqDto } from "./dtos/delete-nguoi-dung-req.dto";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Post,
+  Put,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
+import {
+  ApiBearerAuth,
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
+import { ApiErrorDocs } from 'libs/share/src/core/decorators/swagger-error-docs.decorator';
+import { BinhLuanService } from './binh-luan.service';
+import { plainToInstance } from 'class-transformer';
+import { JwtAuthGuard } from 'libs/share/src/core/guards/jwt-auth.guard';
+import { CreateBinhLuanReqDto } from './dtos/create-binh-luan-req.dto';
+import { CreateBinhLuanResDto } from './dtos/create-binh-luan-res.dto';
+import { ListBinhLuanResDto } from './dtos/list-binh-luan-res.dto';
+import { ListBinhLuanReqDto } from './dtos/list-binh-luan-req.dto';
+import { UpdateBinhLuanResDto } from './dtos/update-binh-luan-res.dto';
+import {
+  IdBinhLuanReqDto,
+  UpdateBinhLuanReqDto,
+} from './dtos/update-binh-luan-req.dto';
+import { DeleteBinhLuanResDto } from './dtos/delete-nguoi-dung-res.dto';
+import { DeleteBinhLuanReqDto } from './dtos/delete-nguoi-dung-req.dto';
 
 @ApiTags('BinhLuan')
 @Controller('binh-luan')
 export class BinhLuanController {
-  constructor(private readonly binhLuanService: BinhLuanService) { }
+  constructor(private readonly binhLuanService: BinhLuanService) {}
 
   @Post()
   @UseGuards(JwtAuthGuard)
@@ -46,11 +64,9 @@ export class BinhLuanController {
   @ApiOkResponse({ type: ListBinhLuanResDto })
   @ApiErrorDocs({
     exclude: ['notFound', 'forbidden', 'unauthorized'],
-    badRequestTarget: [ListBinhLuanReqDto]
+    badRequestTarget: [ListBinhLuanReqDto],
   })
-  async list(
-    @Query() params: ListBinhLuanReqDto,
-  ): Promise<ListBinhLuanResDto> {
+  async list(@Query() params: ListBinhLuanReqDto): Promise<ListBinhLuanResDto> {
     const result = await this.binhLuanService.list(params);
 
     return plainToInstance(ListBinhLuanResDto, result);
@@ -72,7 +88,10 @@ export class BinhLuanController {
     @Query() params: IdBinhLuanReqDto,
     @Body() updateBinhLuanReqDto: UpdateBinhLuanReqDto,
   ): Promise<UpdateBinhLuanResDto> {
-    const result = await this.binhLuanService.update(params.id, updateBinhLuanReqDto);
+    const result = await this.binhLuanService.update(
+      params.id,
+      updateBinhLuanReqDto,
+    );
 
     return plainToInstance(UpdateBinhLuanResDto, result);
   }
@@ -87,9 +106,11 @@ export class BinhLuanController {
   @ApiOkResponse({ type: DeleteBinhLuanResDto })
   @ApiErrorDocs({
     notFoundTarget: ['ViTri'],
-    badRequestTarget: [DeleteBinhLuanReqDto]
+    badRequestTarget: [DeleteBinhLuanReqDto],
   })
-  async delete(@Query() params: DeleteBinhLuanReqDto): Promise<DeleteBinhLuanResDto> {
+  async delete(
+    @Query() params: DeleteBinhLuanReqDto,
+  ): Promise<DeleteBinhLuanResDto> {
     return await this.binhLuanService.delete(params.id);
   }
 }
