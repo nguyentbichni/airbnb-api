@@ -1,7 +1,7 @@
-import { CreateDatPhongReqDto } from './dtos/create-dat-phong-req.dto';
-import { PrismaService } from 'prisma/prisma.service';
-import { ListDatPhongReqDto } from './dtos/list-dat-phong-req.dto';
-import { UpdateDatPhongReqDto } from './dtos/update-dat-phong-req.dto';
+import { CreateDatPhongReqDto } from "./dtos/create-dat-phong-req.dto";
+import { PrismaService } from "prisma/prisma.service";
+import { ListDatPhongReqDto } from "./dtos/list-dat-phong-req.dto";
+import { UpdateDatPhongReqDto } from "./dtos/update-dat-phong-req.dto";
 export declare class DatPhongService {
     private prisma;
     constructor(prisma: PrismaService);

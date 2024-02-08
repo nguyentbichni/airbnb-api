@@ -19,9 +19,7 @@ let NguoiDungService = class NguoiDungService {
         this.prisma = prisma;
     }
     async create(createNguoiDungReqDto) {
-        const user = await this.prisma.nguoiDung.findFirst({
-            where: { email: createNguoiDungReqDto.email },
-        });
+        const user = await this.prisma.nguoiDung.findFirst({ where: { email: createNguoiDungReqDto.email } });
         if (user)
             throw new common_1.BadRequestException(error_constant_1.Errors.Common.accountExisted);
         return await this.prisma.nguoiDung.create({ data: createNguoiDungReqDto });
@@ -33,8 +31,8 @@ let NguoiDungService = class NguoiDungService {
                 OR: [
                     { name: { contains: keyword } },
                     { email: { contains: keyword } },
-                    { phone: { contains: keyword } },
-                ],
+                    { phone: { contains: keyword } }
+                ]
             };
         return await (0, paginate_util_1.paginate)(this.prisma.nguoiDung, args, page, take);
     }
@@ -43,10 +41,7 @@ let NguoiDungService = class NguoiDungService {
     }
     async update(id, updateNguoiDungReqDto) {
         await this.detail(id);
-        return await this.prisma.nguoiDung.update({
-            where: { id },
-            data: updateNguoiDungReqDto,
-        });
+        return await this.prisma.nguoiDung.update({ where: { id }, data: updateNguoiDungReqDto });
     }
     async delete(id) {
         await this.detail(id);
@@ -55,10 +50,7 @@ let NguoiDungService = class NguoiDungService {
     }
     async updateImg(id, uploadViTriHinhAnhResDto) {
         await this.detail(id);
-        return await this.prisma.nguoiDung.update({
-            where: { id },
-            data: uploadViTriHinhAnhResDto,
-        });
+        return await this.prisma.nguoiDung.update({ where: { id }, data: uploadViTriHinhAnhResDto });
     }
 };
 exports.NguoiDungService = NguoiDungService;

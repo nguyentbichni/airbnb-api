@@ -32,9 +32,7 @@ __decorate([
 ], ViTriDto.prototype, "quocGia", void 0);
 __decorate([
     (0, class_transformer_1.Expose)(),
-    (0, swagger_1.ApiProperty)({
-        example: 'data:image/png;base64,60c663d2ccd0381873d8d09bfe8329b0',
-    }),
+    (0, swagger_1.ApiProperty)({ example: 'data:image/png;base64,60c663d2ccd0381873d8d09bfe8329b0' }),
     __metadata("design:type", String)
 ], ViTriDto.prototype, "hinhAnh", void 0);
 class ListViTriResDto {
@@ -44,7 +42,7 @@ __decorate([
     (0, class_transformer_1.Expose)(),
     (0, swagger_1.ApiProperty)({
         type: ViTriDto,
-        isArray: true,
+        isArray: true
     }),
     __metadata("design:type", Array)
 ], ListViTriResDto.prototype, "data", void 0);

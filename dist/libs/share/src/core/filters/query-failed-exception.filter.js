@@ -15,7 +15,7 @@ let QueryFailedErrorFilter = class QueryFailedErrorFilter {
         const ctx = host.switchToHttp();
         const res = ctx.getResponse();
         const message = error.message.trim().split('\n').pop();
-        let errors = [] || {};
+        let errors;
         let status;
         if (error.code === 'P2025') {
             status = common_1.HttpStatus.NOT_FOUND;

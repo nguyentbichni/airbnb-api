@@ -21,14 +21,16 @@ let BinhLuanService = class BinhLuanService {
     }
     async create(createBinhLuanReqDto) {
         return await this.prisma.binhLuan.create({
-            data: createBinhLuanReqDto,
+            data: createBinhLuanReqDto
         });
     }
     async list({ take, page, keyword }) {
         const args = {};
         if (keyword)
             args.where = {
-                OR: [{ noiDung: { contains: keyword } }],
+                OR: [
+                    { noiDung: { contains: keyword } },
+                ]
             };
         if (!(0, lodash_1.isNaN)(Number(keyword))) {
             args.where['OR'].push({ saoBinhLuan: Number(keyword) }, { maPhong: Number(keyword) }, { maNguoiBinhLuan: Number(keyword) });
@@ -45,10 +47,7 @@ let BinhLuanService = class BinhLuanService {
         if ((0, auth_util_1.getCurrentUser)().id !== binhLuan.maNguoiBinhLuan) {
             throw new common_1.ForbiddenException();
         }
-        return await this.prisma.binhLuan.update({
-            where: { id },
-            data: updateBinhLuanReqDto,
-        });
+        return await this.prisma.binhLuan.update({ where: { id }, data: updateBinhLuanReqDto });
     }
     async delete(id) {
         const binhLuan = await this.detail(id);

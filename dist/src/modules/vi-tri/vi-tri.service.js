@@ -19,7 +19,7 @@ let ViTriService = class ViTriService {
     }
     async create(createViTriReqDto) {
         return await this.prisma.viTri.create({
-            data: createViTriReqDto,
+            data: createViTriReqDto
         });
     }
     async list({ take, page, keyword }) {
@@ -29,8 +29,8 @@ let ViTriService = class ViTriService {
                 OR: [
                     { tenViTri: { contains: keyword } },
                     { tinhThanh: { contains: keyword } },
-                    { quocGia: { contains: keyword } },
-                ],
+                    { quocGia: { contains: keyword } }
+                ]
             };
         return await (0, paginate_util_1.paginate)(this.prisma.viTri, args, page, take);
     }
@@ -39,17 +39,11 @@ let ViTriService = class ViTriService {
     }
     async update(id, updateViTriReqDto) {
         await this.detail(id);
-        return await this.prisma.viTri.update({
-            where: { id },
-            data: updateViTriReqDto,
-        });
+        return await this.prisma.viTri.update({ where: { id }, data: updateViTriReqDto });
     }
     async updateImg(id, uploadViTriHinhAnhResDto) {
         await this.detail(id);
-        return await this.prisma.viTri.update({
-            where: { id },
-            data: uploadViTriHinhAnhResDto,
-        });
+        return await this.prisma.viTri.update({ where: { id }, data: uploadViTriHinhAnhResDto });
     }
     async delete(id) {
         await this.detail(id);

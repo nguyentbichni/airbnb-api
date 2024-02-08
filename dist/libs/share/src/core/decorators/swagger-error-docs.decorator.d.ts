@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client';
+import { Prisma } from "@prisma/client";
 type ExcludeError = 'notFound' | 'badRequest' | 'unauthorized' | 'forbidden' | 'internalServer';
 type Options = {
     exclude?: ExcludeError[];

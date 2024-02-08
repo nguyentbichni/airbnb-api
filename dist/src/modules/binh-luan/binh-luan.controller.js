@@ -75,7 +75,7 @@ __decorate([
     (0, swagger_1.ApiOkResponse)({ type: list_binh_luan_res_dto_1.ListBinhLuanResDto }),
     (0, swagger_error_docs_decorator_1.ApiErrorDocs)({
         exclude: ['notFound', 'forbidden', 'unauthorized'],
-        badRequestTarget: [list_binh_luan_req_dto_1.ListBinhLuanReqDto],
+        badRequestTarget: [list_binh_luan_req_dto_1.ListBinhLuanReqDto]
     }),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
@@ -113,7 +113,7 @@ __decorate([
     (0, swagger_1.ApiOkResponse)({ type: delete_nguoi_dung_res_dto_1.DeleteBinhLuanResDto }),
     (0, swagger_error_docs_decorator_1.ApiErrorDocs)({
         notFoundTarget: ['ViTri'],
-        badRequestTarget: [delete_nguoi_dung_req_dto_1.DeleteBinhLuanReqDto],
+        badRequestTarget: [delete_nguoi_dung_req_dto_1.DeleteBinhLuanReqDto]
     }),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),

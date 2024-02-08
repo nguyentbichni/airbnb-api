@@ -81,10 +81,7 @@ __decorate([
     (0, swagger_error_docs_decorator_1.ApiErrorDocs)({
         exclude: ['notFound'],
         badRequestTarget: [create_vi_tri_req_dto_1.CreateViTriReqDto],
-        badRequestFromService: [
-            error_constant_1.Errors.Common.imgMaxSize(5),
-            error_constant_1.Errors.Common.imgNotType,
-        ],
+        badRequestFromService: [error_constant_1.Errors.Common.imgMaxSize(5), error_constant_1.Errors.Common.imgNotType]
     }),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.UploadedFile)(file_validation_pipe_1.ImgValidationPipe)),
@@ -101,7 +98,7 @@ __decorate([
     (0, swagger_1.ApiOkResponse)({ type: list_vi_tri_res_dto_1.ListViTriResDto }),
     (0, swagger_error_docs_decorator_1.ApiErrorDocs)({
         exclude: ['notFound', 'forbidden', 'unauthorized'],
-        badRequestTarget: [list_vi_tri_req_dto_1.ListViTriReqDto],
+        badRequestTarget: [list_vi_tri_req_dto_1.ListViTriReqDto]
     }),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
@@ -118,7 +115,7 @@ __decorate([
     (0, swagger_error_docs_decorator_1.ApiErrorDocs)({
         exclude: ['forbidden', 'unauthorized'],
         notFoundTarget: ['ViTri'],
-        badRequestTarget: [detail_vi_tri_req_dto_1.DetailViTriReqDto],
+        badRequestTarget: [detail_vi_tri_req_dto_1.DetailViTriReqDto]
     }),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
@@ -139,10 +136,7 @@ __decorate([
     (0, swagger_error_docs_decorator_1.ApiErrorDocs)({
         notFoundTarget: ['ViTri'],
         badRequestTarget: [detail_vi_tri_req_dto_1.DetailViTriReqDto, update_vi_tri_req_dto_1.UpdateViTriReqDto],
-        badRequestFromService: [
-            error_constant_1.Errors.Common.imgMaxSize(5),
-            error_constant_1.Errors.Common.imgNotType,
-        ],
+        badRequestFromService: [error_constant_1.Errors.Common.imgMaxSize(5), error_constant_1.Errors.Common.imgNotType]
     }),
     __param(0, (0, common_1.Query)()),
     __param(1, (0, common_1.Body)()),
@@ -166,10 +160,7 @@ __decorate([
     (0, swagger_error_docs_decorator_1.ApiErrorDocs)({
         notFoundTarget: ['ViTri'],
         badRequestTarget: [detail_vi_tri_req_dto_1.DetailViTriReqDto, upload_vi_tri_hinh_anh_req_dto_1.UploadViTriHinhAnhReqDto],
-        badRequestFromService: [
-            error_constant_1.Errors.Common.imgMaxSize(5),
-            error_constant_1.Errors.Common.imgNotType,
-        ],
+        badRequestFromService: [error_constant_1.Errors.Common.imgMaxSize(5), error_constant_1.Errors.Common.imgNotType]
     }),
     __param(0, (0, common_1.Query)()),
     __param(1, (0, common_1.Body)()),
@@ -190,7 +181,7 @@ __decorate([
     (0, swagger_1.ApiOkResponse)({ type: delete_vi_tri_res_dto_1.DeleteViTriResDto }),
     (0, swagger_error_docs_decorator_1.ApiErrorDocs)({
         notFoundTarget: ['ViTri'],
-        badRequestTarget: [delete_vi_tri_req_dto_1.DeleteViTriReqDto],
+        badRequestTarget: [delete_vi_tri_req_dto_1.DeleteViTriReqDto]
     }),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),

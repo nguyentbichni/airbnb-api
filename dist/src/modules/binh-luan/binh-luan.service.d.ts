@@ -1,7 +1,7 @@
-import { CreateBinhLuanReqDto } from './dtos/create-binh-luan-req.dto';
-import { PrismaService } from 'prisma/prisma.service';
-import { ListBinhLuanReqDto } from './dtos/list-binh-luan-req.dto';
-import { UpdateBinhLuanReqDto } from './dtos/update-binh-luan-req.dto';
+import { CreateBinhLuanReqDto } from "./dtos/create-binh-luan-req.dto";
+import { PrismaService } from "prisma/prisma.service";
+import { ListBinhLuanReqDto } from "./dtos/list-binh-luan-req.dto";
+import { UpdateBinhLuanReqDto } from "./dtos/update-binh-luan-req.dto";
 export declare class BinhLuanService {
     private prisma;
     constructor(prisma: PrismaService);

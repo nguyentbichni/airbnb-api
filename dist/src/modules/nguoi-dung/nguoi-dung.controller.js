@@ -93,7 +93,7 @@ __decorate([
     (0, swagger_1.ApiOkResponse)({ type: list_nguoi_dung_res_dto_1.ListNguoiDungResDto }),
     (0, swagger_error_docs_decorator_1.ApiErrorDocs)({
         exclude: ['notFound', 'forbidden', 'unauthorized'],
-        badRequestTarget: [list_nguoi_dung_req_dto_1.ListNguoiDungReqDto],
+        badRequestTarget: [list_nguoi_dung_req_dto_1.ListNguoiDungReqDto]
     }),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
@@ -110,7 +110,7 @@ __decorate([
     (0, swagger_error_docs_decorator_1.ApiErrorDocs)({
         exclude: ['forbidden', 'unauthorized'],
         notFoundTarget: ['NguoiDung'],
-        badRequestTarget: [detail_nguoi_dung_req_dto_1.DetailNguoiDungReqDto],
+        badRequestTarget: [detail_nguoi_dung_req_dto_1.DetailNguoiDungReqDto]
     }),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
@@ -151,10 +151,7 @@ __decorate([
     (0, swagger_error_docs_decorator_1.ApiErrorDocs)({
         notFoundTarget: ['NguoiDung'],
         badRequestTarget: [detail_nguoi_dung_req_dto_1.DetailNguoiDungReqDto, upload_hinh_anh_nguoi_dung_req_dto_1.UploadHinhAnhNguoiDungReqDto],
-        badRequestFromService: [
-            error_constant_1.Errors.Common.imgMaxSize(5),
-            error_constant_1.Errors.Common.imgNotType,
-        ],
+        badRequestFromService: [error_constant_1.Errors.Common.imgMaxSize(5), error_constant_1.Errors.Common.imgNotType]
     }),
     __param(0, (0, common_1.Query)()),
     __param(1, (0, common_1.Body)()),
@@ -175,7 +172,7 @@ __decorate([
     (0, swagger_1.ApiOkResponse)({ type: delete_nguoi_dung_res_dto_1.DeleteNguoiDungResDto }),
     (0, swagger_error_docs_decorator_1.ApiErrorDocs)({
         notFoundTarget: ['NguoiDung'],
-        badRequestTarget: [delete_nguoi_dung_req_dto_1.DeleteNguoiDungReqDto],
+        badRequestTarget: [delete_nguoi_dung_req_dto_1.DeleteNguoiDungReqDto]
     }),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),

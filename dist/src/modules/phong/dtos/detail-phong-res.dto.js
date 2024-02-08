@@ -102,9 +102,7 @@ __decorate([
 ], DetailPhongResDto.prototype, "banUi", void 0);
 __decorate([
     (0, class_transformer_1.Expose)(),
-    (0, swagger_1.ApiProperty)({
-        example: 'data:image/png;base64,60c663d2ccd0381873d8d09bfe8329b0',
-    }),
+    (0, swagger_1.ApiProperty)({ example: 'data:image/png;base64,60c663d2ccd0381873d8d09bfe8329b0' }),
     __metadata("design:type", String)
 ], DetailPhongResDto.prototype, "hinhAnh", void 0);
 //# sourceMappingURL=detail-phong-res.dto.js.map

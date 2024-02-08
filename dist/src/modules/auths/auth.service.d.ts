@@ -1,7 +1,7 @@
-import { PrismaService } from 'prisma/prisma.service';
-import { SignUpReqDto } from './dtos/sign-up-req.dto';
-import { SignInReqDto } from './dtos/sign-in-req.dto';
-import { JwtService } from '@nestjs/jwt';
+import { PrismaService } from "prisma/prisma.service";
+import { SignUpReqDto } from "./dtos/sign-up-req.dto";
+import { SignInReqDto } from "./dtos/sign-in-req.dto";
+import { JwtService } from "@nestjs/jwt";
 export declare class AuthService {
     private prisma;
     private jwtService;

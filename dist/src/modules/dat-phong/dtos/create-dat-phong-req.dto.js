@@ -26,9 +26,7 @@ __decorate([
     __metadata("design:type", Number)
 ], CreateDatPhongReqDto.prototype, "maPhong", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({
-        example: '//kiểu số, bắt buộc phải truyền nếu là admin, tự động ghi đè nếu là user, nên chỉ cần truyền null',
-    }),
+    (0, swagger_1.ApiProperty)({ example: '//kiểu số, bắt buộc phải truyền nếu là admin, tự động ghi đè nếu là user, nên chỉ cần truyền null' }),
     (0, swagger_error_docs_decorator_1.ApiPropertyError)('IsNotEmpty'),
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsNotEmpty)(),

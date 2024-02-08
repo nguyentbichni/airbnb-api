@@ -19,11 +19,9 @@ let PhongService = class PhongService {
         this.prisma = prisma;
     }
     async create(createPhongReqDto) {
-        await this.prisma.viTri.findFirstOrThrow({
-            where: { id: createPhongReqDto.maViTri },
-        });
+        await this.prisma.viTri.findFirstOrThrow({ where: { id: createPhongReqDto.maViTri } });
         return await this.prisma.phong.create({
-            data: createPhongReqDto,
+            data: createPhongReqDto
         });
     }
     async list({ take, page, keyword }) {
@@ -33,7 +31,7 @@ let PhongService = class PhongService {
                 OR: [
                     { tenPhong: { contains: keyword } },
                     { mota: { contains: keyword } },
-                ],
+                ]
             };
         if (!isNaN(Number(keyword))) {
             args.where['OR'].push({ maViTri: Number(keyword) });
@@ -47,10 +45,7 @@ let PhongService = class PhongService {
     }
     async updateImg(id, uploadViTriHinhAnhResDto) {
         await this.detail(id);
-        return await this.prisma.phong.update({
-            where: { id },
-            data: uploadViTriHinhAnhResDto,
-        });
+        return await this.prisma.phong.update({ where: { id }, data: uploadViTriHinhAnhResDto });
     }
     async delete(id) {
         await this.detail(id);

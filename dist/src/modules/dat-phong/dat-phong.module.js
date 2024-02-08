@@ -18,7 +18,7 @@ exports.DatPhongModule = DatPhongModule = __decorate([
     (0, common_1.Module)({
         imports: [prisma_module_1.PrismaModule],
         controllers: [dat_phong_controller_1.DatPhongController],
-        providers: [dat_phong_service_1.DatPhongService],
+        providers: [dat_phong_service_1.DatPhongService]
     })
 ], DatPhongModule);
 //# sourceMappingURL=dat-phong.module.js.map
