@@ -1,0 +1,98 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-1.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model NguoiDung {
+  id       Int      @id @default(autoincrement())
+  name     String   @map("name") @db.VarChar(255)
+  email    String   @map("email") @db.VarChar(255)
+  password String   @map("pass_word") @db.VarChar(255)
+  phone    String   @map("phone") @db.VarChar(15)
+  gender   String   @map("gender") @db.VarChar(20)
+  role     String   @map("role") @db.VarChar(20)
+  hinhAnh  String?  @map("hinh_anh") @db.Text
+  birthday DateTime @map("birth_day")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  datPhong DatPhong[]
+  binhLuan BinhLuan[]
+}
+
+model Phong {
+  id        Int      @id @default(autoincrement())
+  maViTri   Int      @map("maViTri")
+  tenPhong  String   @map("ten_phong") @db.VarChar(255)
+  mota      String   @map("mo_ta") @db.VarChar(255)
+  hinhAnh   String   @map("hinh_anh") @db.Text
+  khach     Int      @map("khach")
+  phongNgu  Int      @map("phong_ngu")
+  giuong    Int      @map("giuong")
+  phongTam  Int      @map("phong_tam")
+  giaTien   Int      @map("gia_tien")
+  mayGiat   Boolean  @map("may_giat")
+  banLa     Boolean  @map("ban_la")
+  tivi      Boolean  @map("tivi")
+  dieuHoa   Boolean  @map("dieu_hoa")
+  wifi      Boolean  @map("wifi")
+  bep       Boolean  @map("bep")
+  doXe      Boolean  @map("do_xe")
+  hoBoi     Boolean  @map("ho_boi")
+  banUi     Boolean  @map("ban_ui")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  datPhong DatPhong[]
+  binhLuan BinhLuan[]
+  viTri    ViTri      @relation(fields: [maViTri], references: [id], onDelete: Cascade)
+}
+
+model ViTri {
+  id        Int      @id @default(autoincrement())
+  tenViTri  String   @map("ten_vi_tri") @db.VarChar(255)
+  tinhThanh String   @map("tinh_thanh") @db.VarChar(255)
+  hinhAnh   String   @map("hinh_anh") @db.Text
+  quocGia   String   @map("quoc_gia") @db.VarChar(255)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  phong Phong[]
+}
+
+model DatPhong {
+  id           Int      @id @default(autoincrement())
+  maPhong      Int      @map("ma_phong")
+  maNguoiDat   Int      @map("ma_nguoi_dat")
+  ngayDen      DateTime @map("ngay_den")
+  ngayDi       DateTime @map("ngay_di")
+  soLuongKhach Int      @map("so_luong_khach")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @default(now()) @updatedAt @map("updated_at")
+
+  phong    Phong     @relation(fields: [maPhong], references: [id], onDelete: Cascade)
+  nguoiDat NguoiDung @relation(fields: [maNguoiDat], references: [id], onDelete: Cascade)
+}
+
+model BinhLuan {
+  id              Int      @id @default(autoincrement())
+  maPhong         Int      @map("ma_phong")
+  maNguoiBinhLuan Int      @map("ma_nguoi_binh_luan")
+  saoBinhLuan     Int      @map("sao_binh_luan")
+  noiDung         String   @map("noi_dung") @db.VarChar(255)
+  ngayBinhLuan    DateTime @default(now()) @map("ngay_binh_luan")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @default(now()) @updatedAt @map("updated_at")
+
+  phong         Phong     @relation(fields: [maPhong], references: [id], onDelete: Cascade)
+  nguoiBinhLuan NguoiDung @relation(fields: [maNguoiBinhLuan], references: [id], onDelete: Cascade)
+}
