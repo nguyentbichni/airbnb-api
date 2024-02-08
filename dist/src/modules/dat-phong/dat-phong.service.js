@@ -20,9 +20,11 @@ let DatPhongService = class DatPhongService {
         this.prisma = prisma;
     }
     async create(createDatPhongReqDto) {
-        await this.prisma.phong.findFirstOrThrow({ where: { id: createDatPhongReqDto.maPhong } });
+        await this.prisma.phong.findFirstOrThrow({
+            where: { id: createDatPhongReqDto.maPhong },
+        });
         return await this.prisma.datPhong.create({
-            data: createDatPhongReqDto
+            data: createDatPhongReqDto,
         });
     }
     async list({ take, page, keyword }) {
@@ -45,7 +47,10 @@ let DatPhongService = class DatPhongService {
     }
     async update(id, updateDatPhongReqDto) {
         await this.detail(id);
-        return await this.prisma.viTri.update({ where: { id }, data: updateDatPhongReqDto });
+        return await this.prisma.viTri.update({
+            where: { id },
+            data: updateDatPhongReqDto,
+        });
     }
     async delete(id) {
         await this.detail(id);

@@ -1,4 +1,4 @@
-import { PageMetaDto } from "libs/share/src/core/dtos/page-meta.dto";
+import { PageMetaDto } from 'libs/share/src/core/dtos/page-meta.dto';
 export declare class PhongDto {
     maViTri: number;
     tenPhong: string;

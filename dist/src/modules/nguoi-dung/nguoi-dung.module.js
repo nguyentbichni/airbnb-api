@@ -18,7 +18,7 @@ exports.NguoiDungModule = NguoiDungModule = __decorate([
     (0, common_1.Module)({
         imports: [prisma_module_1.PrismaModule],
         controllers: [nguoi_dung_controller_1.NguoiDungController],
-        providers: [nguoi_dung_service_1.NguoiDungService]
+        providers: [nguoi_dung_service_1.NguoiDungService],
     })
 ], NguoiDungModule);
 //# sourceMappingURL=nguoi-dung.module.js.map

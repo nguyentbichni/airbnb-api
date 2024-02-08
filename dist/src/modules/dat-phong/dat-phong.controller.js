@@ -84,7 +84,7 @@ __decorate([
     (0, swagger_1.ApiOkResponse)({ type: list_dat_phong_res_dto_1.ListDatPhongResDto }),
     (0, swagger_error_docs_decorator_1.ApiErrorDocs)({
         exclude: ['notFound'],
-        badRequestTarget: [list_dat_phong_req_dto_1.ListDatPhongReqDto]
+        badRequestTarget: [list_dat_phong_req_dto_1.ListDatPhongReqDto],
     }),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
@@ -103,7 +103,7 @@ __decorate([
     (0, swagger_error_docs_decorator_1.ApiErrorDocs)({
         exclude: ['forbidden', 'unauthorized'],
         notFoundTarget: ['DatPhong'],
-        badRequestTarget: [detail_dat_phong_req_dto_1.DetailDatPhongReqDto]
+        badRequestTarget: [detail_dat_phong_req_dto_1.DetailDatPhongReqDto],
     }),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
@@ -141,7 +141,7 @@ __decorate([
     (0, swagger_1.ApiOkResponse)({ type: delete_dat_phong_res_dto_1.DeleteDatPhongResDto }),
     (0, swagger_error_docs_decorator_1.ApiErrorDocs)({
         notFoundTarget: ['ViTri'],
-        badRequestTarget: [delete_dat_phong_req_dto_1.DeleteDatPhongReqDto]
+        badRequestTarget: [delete_dat_phong_req_dto_1.DeleteDatPhongReqDto],
     }),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),

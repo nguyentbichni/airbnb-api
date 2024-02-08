@@ -26,7 +26,9 @@ let JwtStrategy = class JwtStrategy extends (0, passport_1.PassportStrategy)(pas
     async validate(payload) {
         if (!payload)
             return false;
-        return await this.prisma.nguoiDung.findFirst({ where: { email: payload.email } });
+        return await this.prisma.nguoiDung.findFirst({
+            where: { email: payload.email },
+        });
     }
 };
 exports.JwtStrategy = JwtStrategy;

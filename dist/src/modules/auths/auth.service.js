@@ -20,7 +20,9 @@ let AuthService = class AuthService {
         this.jwtService = jwtService;
     }
     async signup(signupReqDto) {
-        const user = await this.prisma.nguoiDung.findFirst({ where: { email: signupReqDto.email } });
+        const user = await this.prisma.nguoiDung.findFirst({
+            where: { email: signupReqDto.email },
+        });
         if (user)
             throw new common_1.BadRequestException(error_constant_1.Errors.Common.accountExisted);
         return this.prisma.nguoiDung.create({
@@ -28,9 +30,12 @@ let AuthService = class AuthService {
         });
     }
     async signin({ email, password }) {
-        const { id } = await this.prisma.nguoiDung.findFirstOrThrow({ where: { email, password }, select: { id: true } });
+        const { id } = await this.prisma.nguoiDung.findFirstOrThrow({
+            where: { email, password },
+            select: { id: true },
+        });
         return {
-            accessToken: this.jwtService.sign({ id, email })
+            accessToken: this.jwtService.sign({ id, email }),
         };
     }
 };

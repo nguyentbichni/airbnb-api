@@ -18,7 +18,7 @@ exports.ViTriModule = ViTriModule = __decorate([
     (0, common_1.Module)({
         imports: [prisma_module_1.PrismaModule],
         controllers: [vi_tri_controller_1.ViTriController],
-        providers: [vi_tri_service_1.ViTriService]
+        providers: [vi_tri_service_1.ViTriService],
     })
 ], ViTriModule);
 //# sourceMappingURL=vi-tri.module.js.map

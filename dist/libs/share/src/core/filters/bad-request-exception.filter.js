@@ -24,13 +24,11 @@ const validationError = (error) => {
     }
     const field = errorObject.property;
     const errName = (0, lodash_1.first)(Object.keys(errorObject.constraints));
-    let code = error_constant_1.Errors.Common[errName]?.code;
+    const code = error_constant_1.Errors.Common[errName]?.code;
     const errMsg = (0, lodash_1.first)(Object.values(errorObject.constraints));
     const regexValueNumber = errMsg.match(/\d+/);
-    const regexValueIn = errMsg.slice(errMsg.indexOf(":") + 1);
-    let message = code
-        ? error_constant_1.Errors.Common[errName].message
-        : undefined;
+    const regexValueIn = errMsg.slice(errMsg.indexOf(':') + 1);
+    let message = code ? error_constant_1.Errors.Common[errName].message : undefined;
     message = (0, lodash_1.replace)(message, /{valueNumber}/, regexValueNumber && regexValueNumber[0]);
     message = (0, lodash_1.replace)(message, /{valueIn}/, regexValueIn);
     return {

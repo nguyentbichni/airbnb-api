@@ -32,7 +32,7 @@ exports.AppModule = AppModule = __decorate([
             }),
             nestjs_cls_1.ClsModule.forRoot({
                 global: true,
-                middleware: { mount: true }
+                middleware: { mount: true },
             }),
             auth_module_1.AuthModule,
             vi_tri_module_1.ViTriModule,

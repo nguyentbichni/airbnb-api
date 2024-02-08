@@ -52,7 +52,7 @@ __decorate([
     (0, class_transformer_1.Expose)(),
     (0, swagger_1.ApiProperty)({
         type: DatPhongDto,
-        isArray: true
+        isArray: true,
     }),
     __metadata("design:type", Array)
 ], ListDatPhongResDto.prototype, "data", void 0);

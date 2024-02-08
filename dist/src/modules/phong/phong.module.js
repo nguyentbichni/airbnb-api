@@ -18,7 +18,7 @@ exports.PhongModule = PhongModule = __decorate([
     (0, common_1.Module)({
         imports: [prisma_module_1.PrismaModule],
         controllers: [phong_controller_1.PhongController],
-        providers: [phong_service_1.PhongService]
+        providers: [phong_service_1.PhongService],
     })
 ], PhongModule);
 //# sourceMappingURL=phong.module.js.map

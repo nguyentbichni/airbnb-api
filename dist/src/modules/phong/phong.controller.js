@@ -74,7 +74,10 @@ __decorate([
     (0, swagger_error_docs_decorator_1.ApiErrorDocs)({
         exclude: ['notFound'],
         badRequestTarget: [create_phong_req_dto_1.CreatePhongReqDto],
-        badRequestFromService: [error_constant_1.Errors.Common.imgMaxSize(5), error_constant_1.Errors.Common.imgNotType]
+        badRequestFromService: [
+            error_constant_1.Errors.Common.imgMaxSize(5),
+            error_constant_1.Errors.Common.imgNotType,
+        ],
     }),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.UploadedFile)(file_validation_pipe_1.ImgValidationPipe)),
@@ -91,7 +94,7 @@ __decorate([
     (0, swagger_1.ApiOkResponse)({ type: list_phong_res_dto_1.ListPhongResDto }),
     (0, swagger_error_docs_decorator_1.ApiErrorDocs)({
         exclude: ['notFound', 'forbidden', 'unauthorized'],
-        badRequestTarget: [list_phong_req_dto_1.ListPhongReqDto]
+        badRequestTarget: [list_phong_req_dto_1.ListPhongReqDto],
     }),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
@@ -108,7 +111,7 @@ __decorate([
     (0, swagger_error_docs_decorator_1.ApiErrorDocs)({
         exclude: ['forbidden', 'unauthorized'],
         notFoundTarget: ['Phong'],
-        badRequestTarget: [detail_phong_req_dto_1.DetailPhongReqDto]
+        badRequestTarget: [detail_phong_req_dto_1.DetailPhongReqDto],
     }),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
@@ -129,7 +132,10 @@ __decorate([
     (0, swagger_error_docs_decorator_1.ApiErrorDocs)({
         notFoundTarget: ['Phong'],
         badRequestTarget: [detail_phong_req_dto_1.DetailPhongReqDto, upload_hinh_anh_phong_req_dto_1.UploadHinhAnhPhongReqDto],
-        badRequestFromService: [error_constant_1.Errors.Common.imgMaxSize(5), error_constant_1.Errors.Common.imgNotType]
+        badRequestFromService: [
+            error_constant_1.Errors.Common.imgMaxSize(5),
+            error_constant_1.Errors.Common.imgNotType,
+        ],
     }),
     __param(0, (0, common_1.Query)()),
     __param(1, (0, common_1.Body)()),
@@ -150,7 +156,7 @@ __decorate([
     (0, swagger_1.ApiOkResponse)({ type: delete_phong_res_dto_1.DeletePhongResDto }),
     (0, swagger_error_docs_decorator_1.ApiErrorDocs)({
         notFoundTarget: ['ViTri'],
-        badRequestTarget: [delete_phong_req_dto_1.DeletePhongReqDto]
+        badRequestTarget: [delete_phong_req_dto_1.DeletePhongReqDto],
     }),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),

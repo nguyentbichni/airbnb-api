@@ -18,7 +18,7 @@ exports.BinhLuanModule = BinhLuanModule = __decorate([
     (0, common_1.Module)({
         imports: [prisma_module_1.PrismaModule],
         controllers: [binh_luan_controller_1.BinhLuanController],
-        providers: [binh_luan_service_1.BinhLuanService]
+        providers: [binh_luan_service_1.BinhLuanService],
     })
 ], BinhLuanModule);
 //# sourceMappingURL=binh-luan.module.js.map

@@ -4,7 +4,9 @@ const client_1 = require("@prisma/client");
 const auth_util_1 = require("../libs/share/src/core/utils/auth.util");
 const prisma = new client_1.PrismaClient();
 async function main() {
-    const admin = await prisma.nguoiDung.findFirst({ where: { email: 'airbnb@gmail.com' } });
+    const admin = await prisma.nguoiDung.findFirst({
+        where: { email: 'airbnb@gmail.com' },
+    });
     const params = {
         email: 'airbnb@gmail.com',
         name: 'airbnb',
@@ -20,7 +22,9 @@ async function main() {
         update: params,
     });
 }
-main().then(async () => await prisma.$disconnect()).catch(async (e) => {
+main()
+    .then(async () => await prisma.$disconnect())
+    .catch(async (e) => {
     console.error(e);
     await prisma.$disconnect();
     process.exit(1);

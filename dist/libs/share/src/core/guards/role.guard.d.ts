@@ -1,4 +1,4 @@
-import { CanActivate } from "@nestjs/common";
+import { CanActivate } from '@nestjs/common';
 export declare class RoleGuard implements CanActivate {
     roleAccess: string[];
     constructor(roleAccess: string[]);

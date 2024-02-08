@@ -42,7 +42,7 @@ __decorate([
     (0, class_transformer_1.Expose)(),
     (0, swagger_1.ApiProperty)({
         type: BinhLuanDto,
-        isArray: true
+        isArray: true,
     }),
     __metadata("design:type", Array)
 ], ListBinhLuanResDto.prototype, "data", void 0);

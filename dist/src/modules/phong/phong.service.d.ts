@@ -1,7 +1,7 @@
-import { PrismaService } from "prisma/prisma.service";
-import { CreatePhongReqDto } from "./dtos/create-phong-req.dto";
-import { ListPhongReqDto } from "./dtos/list-phong-req.dto";
-import { UploadViTriHinhAnhReqDto } from "../vi-tri/dtos/upload-vi-tri-hinh-anh-req.dto";
+import { PrismaService } from 'prisma/prisma.service';
+import { CreatePhongReqDto } from './dtos/create-phong-req.dto';
+import { ListPhongReqDto } from './dtos/list-phong-req.dto';
+import { UploadViTriHinhAnhReqDto } from '../vi-tri/dtos/upload-vi-tri-hinh-anh-req.dto';
 export declare class PhongService {
     private prisma;
     constructor(prisma: PrismaService);

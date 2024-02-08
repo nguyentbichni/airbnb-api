@@ -1,8 +1,8 @@
-import { CreateNguoiDungReqDto } from "./dtos/create-nguoi-dung-req.dto";
-import { PrismaService } from "prisma/prisma.service";
-import { ListNguoiDungReqDto } from "./dtos/list-nguoi-dung-req.dto";
-import { UpdateNguoiDungReqDto } from "./dtos/update-nguoi-dung-req.dto";
-import { UploadHinhAnhNguoiDungReqDto } from "./dtos/upload-hinh-anh-nguoi-dung-req.dto";
+import { CreateNguoiDungReqDto } from './dtos/create-nguoi-dung-req.dto';
+import { PrismaService } from 'prisma/prisma.service';
+import { ListNguoiDungReqDto } from './dtos/list-nguoi-dung-req.dto';
+import { UpdateNguoiDungReqDto } from './dtos/update-nguoi-dung-req.dto';
+import { UploadHinhAnhNguoiDungReqDto } from './dtos/upload-hinh-anh-nguoi-dung-req.dto';
 export declare class NguoiDungService {
     private prisma;
     constructor(prisma: PrismaService);
